@@ -1,18 +1,15 @@
-import pandas as pd 
-import os
+import pandas as pd
+import re
 
-folder_path = './assets'
+def remove_enumeration(text):
+    # Use regular expressions to remove enumeration (e.g., "1.", "2.")
+    cleaned_text = re.sub(r'^\d+\.\s+', '', text)
+    return cleaned_text
 
-csv_files = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
+df = pd.read_csv('assets/result.csv', index_col=[0])
 
-dataframes = []  # List to store DataFrames for each CSV file
+# Apply the remove_enumeration function to the 'Question' column
+df['Question'] = df['Question'].apply(remove_enumeration)
 
-for csv_file in csv_files:
-    file_path = os.path.join(folder_path, csv_file)
-    df = pd.read_csv(file_path)
-    dataframes.append(df)
+print(df)
 
-# Assuming you have a list of DataFrames called 'dataframes'
-merged_df = pd.concat(dataframes, ignore_index=True)
-
-print(merged_df.head())
