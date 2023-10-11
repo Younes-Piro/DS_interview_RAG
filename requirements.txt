@@ -4,3 +4,14 @@ requests
 apache-airflow
 spacy
 scikit-learn
+langchain
+tiktoken
+chromadb
+transformers
+InstructorEmbedding
+torch
+huggingface
+chromadb
+accelerate
+bitsandbytes
+sentence-transformers 
